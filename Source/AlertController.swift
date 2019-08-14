@@ -22,11 +22,11 @@ public enum ActionLayout: Int {
 }
 
 @objc(SDCAlertController)
-open class AlertController: UIViewController {
+public class AlertController: UIViewController {
     private var verticalCenter: NSLayoutConstraint?
 
     /// The alert's title. Directly uses `attributedTitle` without any attributes.
-    override open var title: String? {
+    override public var title: String? {
         get { return self.attributedTitle?.string }
         set { self.attributedTitle = newValue.map(NSAttributedString.init) }
     }
@@ -242,25 +242,25 @@ open class AlertController: UIViewController {
     /// - parameter animated:   Whether to dismiss the alert animated.
     /// - parameter completion: An optional closure that's called when the dismissal finishes.
     @objc(dismissViewControllerAnimated:completion:)
-    open override func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
+    public override func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
         self.willDismissHandler?()
         self.presentingViewController?.dismiss(animated: animated, completion: completion)
     }
 
     // MARK: - Override
 
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.listenForKeyboardChanges()
         self.configureAlertView()
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.textFields?.first?.resignFirstResponder()
     }
 
-    open override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         if self.behaviors.contains(.automaticallyFocusTextField) {
             return self.textFields?.first?.becomeFirstResponder() ?? super.becomeFirstResponder()
         }
@@ -268,11 +268,11 @@ open class AlertController: UIViewController {
         return super.becomeFirstResponder()
     }
 
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.presentingViewController?.preferredStatusBarStyle ?? .default
     }
 
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return self.presentingViewController?.supportedInterfaceOrientations
             ?? super.supportedInterfaceOrientations
     }
