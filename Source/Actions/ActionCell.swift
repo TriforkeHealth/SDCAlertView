@@ -52,8 +52,14 @@ final class ActionCell: UICollectionViewCell {
         
         self.textColor = visualStyle.textColor(for: action)
         self.titleLabel.textColor = self.textColor ?? self.tintColor
-        
         self.titleLabel.attributedText = action.attributedTitle
+        self.titleLabel.textAlignment = visualStyle.buttonTextAlignment
+        
+        self.titleLabel.snp.updateConstraints { make in
+            make.leading.equalTo(snp.leading).offset(visualStyle.buttonTitleMargin)
+            make.trailing.equalTo(snp.trailing).offset(0.0 - visualStyle.buttonTitleMargin)
+        }
+        
 
         self.highlightedBackgroundView.backgroundColor = visualStyle.actionHighlightColor
 
