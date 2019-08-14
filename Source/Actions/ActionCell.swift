@@ -1,11 +1,41 @@
 import UIKit
+import SnapKit
 
 final class ActionCell: UICollectionViewCell {
 
-    @IBOutlet private(set) var titleLabel: UILabel!
-    @IBOutlet private var highlightedBackgroundView: UIView!
+    private(set) var titleLabel = UILabel()
+    private var highlightedBackgroundView = UIView()
 
     private var textColor: UIColor?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubviews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupSubviews()
+    }
+    
+    private func setupSubviews() {
+        addSubview(titleLabel)
+        addSubview(highlightedBackgroundView)
+        
+        highlightedBackgroundView.alpha = 0.7
+        highlightedBackgroundView.isHidden = true
+        highlightedBackgroundView.snp.makeConstraints { make in
+            make.center.equalTo(snp.center)
+            make.size.equalTo(snp.size)
+        }
+        
+        titleLabel.textAlignment = .center
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(snp.leading).offset(12.0)
+            make.trailing.equalTo(snp.trailing).offset(-12.0)
+            make.centerY.equalTo(snp.centerY)
+        }
+    }
     
     var isEnabled = true {
         didSet { self.titleLabel.isEnabled = self.isEnabled }
