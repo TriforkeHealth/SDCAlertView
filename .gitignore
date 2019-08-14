@@ -19,5 +19,8 @@ DerivedData
 *.hmap
 *.ipa
 
- # Carthage
- Carthage/Build
+# Carthage
+Carthage/Build
+Carthage/Checkouts
+Cartfile.resolved
+

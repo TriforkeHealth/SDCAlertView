@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BA53BDB1F31D23D003854F3 /* UIView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA53BDA1F31D23D003854F3 /* UIView+Accessibility.swift */; };
 		894DA5AB201C73B400603715 /* Bundle+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894DA5AA201C73B400603715 /* Bundle+Convenience.swift */; };
+		B94C9CC02303EFE200EA8D84 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94C9CBF2303EFE200EA8D84 /* SnapKit.framework */; };
 		D23B53751BF473BC00AB5BBE /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B53741BF473BC00AB5BBE /* AlertView.swift */; };
 		D23B53771BF473CC00AB5BBE /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23B53761BF473CC00AB5BBE /* ActionSheetView.swift */; };
 		D2515EC41BC1A7D500ED606F /* SDCAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2515EC31BC1A7D500ED606F /* SDCAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		0BA53BDA1F31D23D003854F3 /* UIView+Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Accessibility.swift"; sourceTree = "<group>"; };
 		894DA5AA201C73B400603715 /* Bundle+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Convenience.swift"; sourceTree = "<group>"; };
+		B94C9CBC2303EE6700EA8D84 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		B94C9CBF2303EFE200EA8D84 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		D23B53741BF473BC00AB5BBE /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D23B53761BF473CC00AB5BBE /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		D2515EC11BC1A7D500ED606F /* SDCAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDCAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,12 +72,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94C9CC02303EFE200EA8D84 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B94C9CBE2303EFE200EA8D84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B94C9CBF2303EFE200EA8D84 /* SnapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D23B53781BF473DA00AB5BBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,8 +121,10 @@
 		D25B3C9B17ECE7A6004B32A2 = {
 			isa = PBXGroup;
 			children = (
+				B94C9CBC2303EE6700EA8D84 /* Cartfile */,
 				D2515EC91BC1A80200ED606F /* Products */,
 				D2F8347218EF2C09000BB281 /* Source */,
+				B94C9CBE2303EFE200EA8D84 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -187,6 +201,7 @@
 				D2515EBD1BC1A7D500ED606F /* Frameworks */,
 				D2515EBE1BC1A7D500ED606F /* Headers */,
 				D2515EBF1BC1A7D500ED606F /* Resources */,
+				B94C9CBD2303EF0000EA8D84 /* Copy frameworks (Carthage) */,
 			);
 			buildRules = (
 			);
@@ -247,6 +262,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B94C9CBD2303EF0000EA8D84 /* Copy frameworks (Carthage) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+			);
+			name = "Copy frameworks (Carthage)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D2515EBC1BC1A7D500ED606F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -292,6 +330,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
@@ -323,6 +365,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Supporting Files/Info.plist";
