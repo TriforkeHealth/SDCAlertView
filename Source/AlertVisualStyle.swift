@@ -86,7 +86,15 @@ open class AlertVisualStyle: NSObject {
     /// The font for an action sheet's other actions
     @objc
     public var actionSheetNormalFont = UIFont.systemFont(ofSize: 20)
-
+    
+    /// Text alignment in buttons
+    @objc
+    public var buttonTextAlignment = NSTextAlignment.center
+    
+    /// Padding between title label and button
+    @objc
+    public var buttonTitleMargin: CGFloat = 12.0
+    
     /// The style of the alert.
     private let alertStyle: AlertControllerStyle
 
