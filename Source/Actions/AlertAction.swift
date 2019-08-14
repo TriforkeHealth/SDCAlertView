@@ -4,14 +4,16 @@ import UIKit
 public class AlertAction: NSObject {
     /// Creates an action with a plain title.
     ///
-    /// parameter title:   An optional title for the action
-    /// parameter style:   The action's style
-    /// parameter handler: An optional closure that's called when the user taps on this action
+    /// - parameter title:   An optional title for the action
+    /// - parameter icon:    An optional icon image to be shown next to the title
+    /// - parameter style:   The action's style
+    /// - parameter handler: An optional closure that's called when the user taps on this action
     @objc
-    public convenience init(title: String?, style: AlertAction.Style, handler: ((AlertAction) -> Void)? = nil)
+    public convenience init(title: String?, icon: UIImage? = nil, style: AlertAction.Style, handler: ((AlertAction) -> Void)? = nil)
     {
         self.init()
         self.title = title
+        self.icon = icon
         self.style = style
         self.handler = handler
     }
@@ -20,13 +22,15 @@ public class AlertAction: NSObject {
     /// Creates an action with a stylized title.
     ///
     /// - parameter attributedTitle: An optional stylized title
+    /// - parameter icon:    An optional icon image to be shown next to the title
     /// - parameter style:           The action's style
     /// - parameter handler:         An optional closure that is called when the user taps on this action
-    public convenience init(attributedTitle: NSAttributedString?, style: AlertAction.Style,
+    public convenience init(attributedTitle: NSAttributedString?, icon: UIImage? = nil, style: AlertAction.Style,
         handler: ((AlertAction) -> Void)? = nil)
     {
         self.init()
         self.attributedTitle = attributedTitle
+        self.icon = icon
         self.style = style
         self.handler = handler
     }
@@ -41,6 +45,10 @@ public class AlertAction: NSObject {
         get { return self.attributedTitle?.string }
         set { self.attributedTitle = newValue.map(NSAttributedString.init) }
     }
+    
+    /// The action's icon
+    @objc
+    private(set) public var icon: UIImage?
 
     /// The stylized title for the action.
     @objc

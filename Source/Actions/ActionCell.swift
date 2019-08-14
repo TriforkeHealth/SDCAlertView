@@ -5,6 +5,7 @@ final class ActionCell: UICollectionViewCell {
 
     private(set) var titleLabel = UILabel()
     private var highlightedBackgroundView = UIView()
+    private var iconView: UIImageView?
 
     private var textColor: UIColor?
     
@@ -24,17 +25,8 @@ final class ActionCell: UICollectionViewCell {
         
         highlightedBackgroundView.alpha = 0.7
         highlightedBackgroundView.isHidden = true
-        highlightedBackgroundView.snp.makeConstraints { make in
-            make.center.equalTo(snp.center)
-            make.size.equalTo(snp.size)
-        }
         
         titleLabel.textAlignment = .center
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(snp.leading).offset(12.0)
-            make.trailing.equalTo(snp.trailing).offset(-12.0)
-            make.centerY.equalTo(snp.centerY)
-        }
     }
     
     var isEnabled = true {
@@ -55,15 +47,44 @@ final class ActionCell: UICollectionViewCell {
         self.titleLabel.attributedText = action.attributedTitle
         self.titleLabel.textAlignment = visualStyle.buttonTextAlignment
         
-        self.titleLabel.snp.updateConstraints { make in
-            make.leading.equalTo(snp.leading).offset(visualStyle.buttonTitleMargin)
-            make.trailing.equalTo(snp.trailing).offset(0.0 - visualStyle.buttonTitleMargin)
+        if let icon = action.icon {
+            let iconView = UIImageView(image: icon)
+            iconView.contentMode = .scaleAspectFit
+            iconView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+            
+            addSubview(iconView)
+            self.iconView = iconView
         }
         
-
         self.highlightedBackgroundView.backgroundColor = visualStyle.actionHighlightColor
 
+        self.setupConstraints(visualStyle: visualStyle)
         self.setupAccessibility(using: action)
+    }
+    
+    private func setupConstraints(visualStyle: AlertVisualStyle) {
+        highlightedBackgroundView.snp.makeConstraints { make in
+            make.center.equalTo(snp.center)
+            make.size.equalTo(snp.size)
+        }
+        
+        if let iconView = iconView {
+            iconView.snp.makeConstraints { make in
+                make.leading.equalTo(snp.leading).offset(visualStyle.buttonTitleMargin)
+                make.centerY.equalTo(snp.centerY)
+                make.height.lessThanOrEqualTo(snp.height)
+            }
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            if let iconView = self.iconView {
+                make.leading.equalTo(iconView.snp.trailing).offset(visualStyle.buttonTitleMargin)
+            } else {
+                make.leading.equalTo(snp.leading).offset(visualStyle.buttonTitleMargin)
+            }
+            make.trailing.equalTo(snp.trailing).offset(0.0 - visualStyle.buttonTitleMargin)
+            make.centerY.equalTo(snp.centerY)
+        }
     }
 
     override func tintColorDidChange() {
