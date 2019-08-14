@@ -1,3 +1,5 @@
+This is a fork of the [sberrevoets/SDCAlertView](https://github.com/sberrevoets/SDCAlertView) project. It contains custom additions needed by Trifork eHealth organization.
+
 # SDCAlertView
 
 `SDCAlertView` started out as an alert that looked identical to `UIAlertView`, but had support for a custom content view. With the introduction of `UIAlertController` in iOS 8, the project was updated to the more modern API that `UIAlertController` brought.
