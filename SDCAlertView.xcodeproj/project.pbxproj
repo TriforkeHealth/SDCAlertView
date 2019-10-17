@@ -194,6 +194,7 @@
 				D2515EBD1BC1A7D500ED606F /* Frameworks */,
 				D2515EBE1BC1A7D500ED606F /* Headers */,
 				D2515EBF1BC1A7D500ED606F /* Resources */,
+				B9D5425523589EFC00161D95 /* Copy Frameworks (Carthage) */,
 			);
 			buildRules = (
 			);
@@ -252,6 +253,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B9D5425523589EFC00161D95 /* Copy Frameworks (Carthage) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+			);
+			name = "Copy Frameworks (Carthage)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2515EBC1BC1A7D500ED606F /* Sources */ = {
