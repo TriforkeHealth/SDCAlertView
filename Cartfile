@@ -1,1 +1,1 @@
-github "SnapKit/SnapKit" == 4.2.0
+# Do not put any frameworks here, as they get embedded
